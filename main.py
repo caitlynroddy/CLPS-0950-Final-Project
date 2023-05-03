@@ -9,7 +9,7 @@ def game_board(): #Game board function defined.#
 
 
 def piece_drop(play_board, row, column, piece): #Player's piece being put into the board.#
-    play_board[row][column] = piece
+    play_board[row][column] = piece #Setting up the matrix.#
 
 
 def column_check(play_board, column): #This will check if the number input by each player is a plausible column.#
@@ -85,7 +85,7 @@ while not game_done: #Loop is going to run when the game_done variable is false.
 
     change_board(play_board) #Calls the change_board function, so that we can see the game board after the players have taken their turns.#
 
-    turn = turn + 1
+    turn = turn + 1 #Adds to the turn each time.#
     turn = turn % 2 #Divides the value of turn by two, which makes it possible to alternate the turns between the two players.#
 
     
