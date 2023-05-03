@@ -4,7 +4,7 @@ number_of_rows = 6
 number_of_columns = 7
 
 def game_board(): #Game board function defined.#
-    play_board = np.zeros((6,7)) #Create a 6 by 7 matrix of zeros as an empty board.#
+    play_board = np.zeros((number_of_rows,number_of_columns)) #Create a 6 by 7 matrix of zeros as an empty board.#
     return play_board #Return this as play_board.#
 
 
@@ -13,7 +13,7 @@ def piece_drop(play_board, row, column, piece): #Player's piece being put into t
 
 
 def column_check(play_board, column): #This will check if the number input by each player is a plausible column.#
-    return [5][column] == 0 #Checks if the selected column of the fifth row (the top row) has any number other than 0. If the column is 0, then the player can put their piece in that column. If the column is not 0, then that slot has already been filled, and the player cannot go there.#
+    return [number_of_rows - 1][column] == 0 #Checks if the selected column of the fifth row (the top row) has any number other than 0. If the column is 0, then the player can put their piece in that column. If the column is not 0, then that slot has already been filled, and the player cannot go there.#
 
 
 def row_check(): #This will determine which row the player's piece will fall to.#
@@ -22,9 +22,23 @@ def row_check(): #This will determine which row the player's piece will fall to.
             return row
     
 def change_board(play_board): #Flips the board so that the pieces will go to the bottom row, rather than the top of the row. This will make the game actually look more like the authentic connect four game.#
-    print(np.flip(play_board, 0))#Use numpy to flip the matrix over the x0axis
+    print(np.flip(play_board, 0))#Use numpy to flip the matrix over the x-axis.#
 
-play_board = game_board() #Initalize the game board, which is currently a zeros matrix#
+def win_check(play_board, piece): #This function is going to check the possible ways of winning in the game.#
+
+ #Checking for a horizontal win#
+    for col in range(number_of_columns - 3 ): #Loop iterating through the columns. We subtract 3 because a horizontal win cannot start at the fifth column, it can only start from columns 0 to 4.#
+        for row in range(number_of_rows): #Loop through the rows. All the rows can work for a win.#
+            if play_board[row][col] == piece and play_board[row][col + 1] == piece and play_board[row][col + 2] == piece  and play_board[row][col + 3] == piece: #We add 1 each time to check the next column to the right.#
+                return True 
+
+#Checking for vertical win#
+    for col in range(number_of_columns): #Loop iterating through the columns. ALl the columns can work for a win.#
+        for row in range(number_of_rows - 3): #Loop through the rows. We subtract 3 because a vertical win cannot start at the top row.#
+            if play_board[row][col] == piece and play_board[row + 1][col] == piece and play_board[row + 2][col] == piece  and play_board[row + 3][col] == piece: #We add 1 each time to check the next row.#
+                return True  
+
+play_board = game_board() #Initalize the game board, which is currently a zeros matrix.#
 print(play_board) #Displays the game board so that the players can see it.#
 game_done = False #Initialize the game_done variable as false. This will change to true when a player wins.#
 player_turn = 0 #Intialize the player's turn, which will be useful in separating each turn for player 1 and player 2.#
@@ -39,6 +53,10 @@ while not game_done: #Loop is going to run when the game_done variable is false.
         if column_check(play_board, column):
             next_row = row_check(play_board, column) #Getting the next available row.#
             piece_drop(play_board, next_row, column, 1) #Putting player 1's piece in their desired slot. Their piece will show up as the number 1.#
+
+            if win_check(play_board, 1): #Function will check ################################
+                print('Player One, you win!') #Displays winning message to player 1 if they win.#
+                game_done = True #Game will be over.#
 
 
 #Player 2 Turn#
