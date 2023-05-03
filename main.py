@@ -38,6 +38,18 @@ def win_check(play_board, piece): #This function is going to check the possible 
             if play_board[row][col] == piece and play_board[row + 1][col] == piece and play_board[row + 2][col] == piece  and play_board[row + 3][col] == piece: #We add 1 each time to check the next row.#
                 return True  
 
+#Checking for positve-sloped diagonal win#
+    for col in range(number_of_columns - 3): #Loop iterating through the columns.#
+        for row in range(number_of_rows - 3): #Loop through the rows.#
+            if play_board[row][col] == piece and play_board[row + 1][col + 1] == piece and play_board[row + 2][col + 2] == piece  and play_board[row + 3][col + 3] == piece: #We add 1 each time to check for each diagonal in the positive direction.#
+                return True
+
+#Checking for negatively-sloped diagonal win#
+    for col in range(number_of_columns - 3): #Loop iterating through the columns.#
+        for row in range(3, number_of_rows - 3): #Loop through the rows starting at row 3 because the diagonal cannot begin (fit) below row 3.#
+            if play_board[row][col] == piece and play_board[row - 1][col + 1] == piece and play_board[row - 2][col + 2] == piece  and play_board[row - 3][col + 3] == piece: #We add 1 each time for the columns, but we subtract 1 each time for the rows because we are moving diagonally in the negative direction.#
+                return True
+
 play_board = game_board() #Initalize the game board, which is currently a zeros matrix.#
 print(play_board) #Displays the game board so that the players can see it.#
 game_done = False #Initialize the game_done variable as false. This will change to true when a player wins.#
@@ -54,7 +66,7 @@ while not game_done: #Loop is going to run when the game_done variable is false.
             next_row = row_check(play_board, column) #Getting the next available row.#
             piece_drop(play_board, next_row, column, 1) #Putting player 1's piece in their desired slot. Their piece will show up as the number 1.#
 
-            if win_check(play_board, 1): #Function will check ################################
+            if win_check(play_board, 1): #Function to check if player 1 wins.#
                 print('Player One, you win!') #Displays winning message to player 1 if they win.#
                 game_done = True #Game will be over.#
 
@@ -67,6 +79,10 @@ while not game_done: #Loop is going to run when the game_done variable is false.
             next_row = row_check(play_board, column) #Getting the next available row.#
             piece_drop(play_board, next_row, column, 2) #Putting player 2's piece in their desired slot. Their piece will show up as the number 2.#
             
+            if win_check(play_board, 2): #Function to check if player 2 wins.#
+                print('Player Two, you win!') #Displays winning message to player 2 if they win.#
+                game_done = True #Game will be over.#
+
     change_board(play_board) #Calls the change_board function, so that we can see the game board after the players have taken their turns.#
 
     turn = turn + 1
