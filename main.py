@@ -1,4 +1,5 @@
 import numpy as np #Importing numpy as np to make the code easier to read and understand.#
+import pygame #Importing pygame for graphics.#
 
 number_of_rows = 6
 number_of_columns = 7
@@ -55,6 +56,13 @@ print(play_board) #Displays the game board so that the players can see it.#
 game_done = False #Initialize the game_done variable as false. This will change to true when a player wins.#
 player_turn = 0 #Intialize the player's turn, which will be useful in separating each turn for player 1 and player 2.#
 
+pygame.init() #Initialize pygame.#
+
+square_pixels = 100 #Setting the board to be 100 pixels.#
+screen_width = number_of_columns * square_pixels #Setting the horizontal screen size for the game.#
+screen_length = (number_of_rows + 1) * square_pixels #Setting the vertical screen size for the game. Add 1 to the number of rows so that we can show the game piece above the game board. This is just for visual purposes.#
+size = (screen_width,screen_length)
+screen = pygame.display.set_mode(size) #Function within pygame that shows the board/game.#
 
 while not game_done: #Loop is going to run when the game_done variable is false. When a player wins the game (by getting four in a row) the game_done variable will be true.#
     
