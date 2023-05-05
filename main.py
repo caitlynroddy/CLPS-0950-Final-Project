@@ -1,5 +1,6 @@
 import numpy as np #Importing numpy as np to make the code easier to read and understand.#
 import pygame #Importing pygame for graphics.#
+import sys #Importing sys to work with pygame.#
 
 number_of_rows = 6
 number_of_columns = 7
@@ -66,6 +67,12 @@ screen = pygame.display.set_mode(size) #Function within pygame that shows the bo
 
 while not game_done: #Loop is going to run when the game_done variable is false. When a player wins the game (by getting four in a row) the game_done variable will be true.#
     
+    for event in pygame.event.get(): #Events are actions, such as clicking and mouse motions, that are part of the game.#
+        if event.type == pygame.QUIT:
+            sys.exit() #Allows game to properlyquit when the x button in the corner of the screen is hit.#
+        
+        if
+
  #Player 1 Turn#
     if player_turn == 0: #If the player_turn variable equals 0, then the game will ask for player 1 to go.#
         column = int(input('Player One, it is your turn! Choose a number from 0 to 6.')) #Since the player_turn variable equals 0, the game will display this message so that player 1 knows to go. The player will type a number from 0-6 as the column of their move. The int makes sure the command is an integer.#
