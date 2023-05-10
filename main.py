@@ -3,6 +3,32 @@ import math
 import pygame #Importing pygame for graphics.#
 import sys #Importing sys to work with pygame.#
 
+#Rock Paper Scissors Game#
+import random
+
+print('Welcome to rock, paper, scissors! You get five rounds. The person who wins the most rounds of the five will be player 1 for Connect 4!')
+
+def game_function():
+    options = ['rock', 'paper', 'scissors']
+    computer_choice = random.choice(options)
+
+    print("Choose Rock, paper, or scissors!")
+    player_choice = input().lower()
+
+    print("Player chose:", player_choice)
+    print("Computer chose:", computer_choice)
+
+    if player_choice == computer_choice:
+        print("It's a tie!")
+    elif ((player_choice == "rock" and computer_choice == "scissors") or (player_choice == "paper" and computer_choice == "rock") or (player_choice == "scissors" and computer_choice == "paper")):
+        print("You win!")
+    else:
+        print("You lose!")
+
+game_function()
+
+#Connect Four Game Continued#
+
 #Variables#
 yellow = (255,255,0)
 black = (0,0,0)
