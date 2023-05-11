@@ -1,1 +1,2 @@
 # CLPS-0950-Final-Project
+This game of Connect 4, along with Rock, Paper, Scissors, uses pygame, numpy, math, and sys. The two players first begin with three rounds each of rock, paper, scissors, and the player who wins the most of the three is deemed player 1. The two players then compete in the game of Connect 4, where player 1 is blue, and player 2 is green. Once the game is completed, the game exits.

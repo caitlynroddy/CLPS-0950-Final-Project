@@ -67,6 +67,3 @@ while running:
         rule_display = header.render(text, True, (255,255,255))
         screen.blit(rule_display, (165,150))
         pygame.display.update()
-
-
-
