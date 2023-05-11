@@ -2,7 +2,7 @@
 import random
 
 def game_function():
-    print('Welcome to rock, paper, scissors! You get five rounds. The person who wins the most rounds of the five will be player 1 for Connect 4!')
+    print('Welcome to rock, paper, scissors! You get three rounds. The person who wins the most rounds of the three will be player 1 for Connect 4!')
     options = ['rock', 'paper', 'scissors']
 
     player1_points = 0
